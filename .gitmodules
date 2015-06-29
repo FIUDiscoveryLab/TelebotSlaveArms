@@ -1,0 +1,12 @@
+[submodule "TelebotGitignore"]
+	path = TelebotGitignore
+	url = https://github.com/FIUDiscoveryLab/TelebotGitignore.git
+[submodule "ThirdParty/JSSC"]
+	path = ThirdParty/JSSC
+	url = https://github.com/FIUDiscoveryLab/JSSC.git
+[submodule "ThirdParty/SLF4J"]
+	path = ThirdParty/SLF4J
+	url = https://github.com/FIUDiscoveryLab/SLF4J.git
+[submodule "ThirdParty/ndds.5.1.0"]
+	path = ThirdParty/ndds.5.1.0
+	url = https://github.com/FIUDiscoveryLab/ndds.5.1.0.git
