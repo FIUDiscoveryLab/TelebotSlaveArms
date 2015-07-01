@@ -1,4 +1,4 @@
-package discoverylab.telebot.slave.arms.test;
+package discoverylab.telebot.slave.arms;
 
 import com.rti.dds.topic.Topic;
 

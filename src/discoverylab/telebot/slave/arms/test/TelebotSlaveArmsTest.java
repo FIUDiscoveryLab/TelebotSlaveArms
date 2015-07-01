@@ -4,6 +4,7 @@ import static discoverylab.util.LogUtils.*;
 import TelebotDDSCore.Source.Java.Generated.master.arms.TMasterToArms;
 import TelebotDDSCore.Source.Java.Generated.master.arms.TOPIC_MASTER_TO_SLAVE_ARMS;
 import TelebotDDSCore.Source.Java.Generated.master.hands.TOPIC_MASTER_TO_SLAVE_HANDS;
+import discoverylab.telebot.slave.arms.TelebotSlaveArms;
 import discoverylab.telebot.slave.arms.configurations.SlaveArmsConfig;
 import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
 

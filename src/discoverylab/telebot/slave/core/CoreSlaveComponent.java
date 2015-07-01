@@ -14,7 +14,7 @@ import com.rti.dds.subscription.DataReaderImpl;
 import com.rti.dds.subscription.Subscriber;
 import com.rti.dds.topic.Topic;
 
-import discoverylab.telebot.slave.configurations.Config;
+import discoverylab.telebot.slave.core.configurations.Config;
 import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 import jssc.SerialPort;
 import jssc.SerialPortException;
