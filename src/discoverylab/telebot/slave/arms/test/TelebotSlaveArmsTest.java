@@ -1,6 +1,6 @@
 package discoverylab.telebot.slave.arms.test;
 
-import static discoverylab.util.LogUtils.*;
+import static discoverylab.util.logging.LogUtils.*;
 import TelebotDDSCore.Source.Java.Generated.master.arms.TMasterToArms;
 import TelebotDDSCore.Source.Java.Generated.master.arms.TOPIC_MASTER_TO_SLAVE_ARMS;
 import TelebotDDSCore.Source.Java.Generated.master.hands.TOPIC_MASTER_TO_SLAVE_HANDS;

@@ -3,13 +3,9 @@ package discoverylab.telebot.slave.core;
 import java.lang.reflect.InvocationTargetException;
 
 import TelebotDDSCore.DDSCommunicator;
-import TelebotDDSCore.Source.Java.Generated.master.hands.TMasterToHands;
-import TelebotDDSCore.Source.Java.Generated.master.hands.TMasterToHandsDataReader;
 
-import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.infrastructure.InstanceHandle_t;
 import com.rti.dds.infrastructure.StatusKind;
-import com.rti.dds.subscription.DataReaderAdapter;
 import com.rti.dds.subscription.DataReaderImpl;
 import com.rti.dds.subscription.Subscriber;
 import com.rti.dds.topic.Topic;
@@ -18,7 +14,7 @@ import discoverylab.telebot.slave.core.configurations.Config;
 import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import static discoverylab.util.LogUtils.*;
+import static discoverylab.util.logging.LogUtils.*;
 
 /**
  * 
@@ -32,7 +28,6 @@ public abstract class CoreSlaveComponent {
 //  Serial
 	private SerialPort serialPort;
 	protected Boolean serialConnected 		= false;
-	private Boolean serialPortsAvailable 	= false;
 	private String serialPortName;
 	private Integer baudRate;
 	private Integer dataBits;

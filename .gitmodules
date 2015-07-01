@@ -13,3 +13,6 @@
 [submodule "src/TelebotDDSCore"]
 	path = src/TelebotDDSCore
 	url = https://github.com/FIUDiscoveryLab/TelebotDDSCore.git
+[submodule "src/discoverylab/util/logging"]
+	path = src/discoverylab/util/logging
+	url = https://github.com/FIUDiscoveryLab/logging.git
