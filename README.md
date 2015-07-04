@@ -4,7 +4,7 @@ Telebot Slave Arms Component
 ##Installation
 
 ###Git
-`git clone --recursive https://github.com/FIUDiscoveryLab/DDSCore.git`
+`git clone --recursive hhttps://github.com/FIUDiscoveryLab/TelebotSlaveArms.git`
 
 ###Eclipse IDE
 
