@@ -25,9 +25,12 @@ public abstract class CoreSlaveComponent {
 
 	public static String TAG = makeLogTag("CoreComponent");
 	
+//	Is it a Slave Component. This is set in the constructor
+	private Boolean isSerialComponent 				= true;
+	
 //  Serial
 	private SerialPort serialPort;
-	protected Boolean serialConnected 		= false;
+	protected Boolean serialConnected 				= false;
 	private String serialPortName;
 	private Integer baudRate;
 	private Integer dataBits;
@@ -44,10 +47,18 @@ public abstract class CoreSlaveComponent {
 	InstanceHandle_t instance_handle 				= InstanceHandle_t.HANDLE_NIL;
 	
 	/**
+	 * Default Core Slave Component for non-serial components
+	 */
+	public CoreSlaveComponent(){
+		this.isSerialComponent = false;
+	}
+	
+	/**
 	 * Default Constructor Uses Default Values For Serial Connection
 	 * @param serialPort 
 	 */
 	public CoreSlaveComponent(SerialPort serialPort){
+		
 		this.serialPort = serialPort;
 		
 		LOGW(TAG, "Setting --Default-- Serial Configurations");
@@ -145,13 +156,16 @@ public abstract class CoreSlaveComponent {
 	public abstract boolean calibrate();
 	
 	/**
-	 * Initiate DDS Protocol
+	 * Initiate DDS Protocol with Serial
 	 * @return
 	 */
 	public boolean initiateTransmissionProtocol(String topicName, Class type, CoreDataReaderAdapter listener){
 		setListener(listener);
-		getListener().setSerialPort(this.serialPort);
 		
+		if(isSerialComponent){
+			getListener().setSerialPort(this.serialPort);
+		}
+
 		communicator = new DDSCommunicator();
 		try {
 			communicator.createParticipant();

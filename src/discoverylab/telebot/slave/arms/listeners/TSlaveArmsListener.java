@@ -24,8 +24,11 @@ import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 public class TSlaveArmsListener extends CoreDataReaderAdapter{
 	
 	public void on_data_available(DataReader reader) {
+		// STEP 1: Create Data Reader
 		TMasterToArmsDataReader tMasterToArmsDataReader = (TMasterToArmsDataReader) reader;
+		// STEP 2: Create Data Sequence
 		TMasterToArmsSeq dataSeq = new TMasterToArmsSeq();
+		// STEP 3: Create Sample Info Sequence
 		SampleInfoSeq infoSeq = new SampleInfoSeq();
 		
 		try {
@@ -61,4 +64,5 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 			tMasterToArmsDataReader.return_loan(dataSeq, infoSeq);
         }
 	}
+	
 }
