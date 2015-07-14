@@ -217,7 +217,7 @@ public abstract class CoreSlaveComponent {
 		}
 		
 		//TODO Get assertion of Participant
-		return false;
+		return true;
 	}
 
 	private static CoreDataReaderAdapter getListener() {

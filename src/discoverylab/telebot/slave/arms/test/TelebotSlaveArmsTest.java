@@ -20,28 +20,28 @@ public class TelebotSlaveArmsTest {
 	
 	public static void main(String [] args){
 		
-		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms(
-				  SlaveArmsConfig.DEFAULT_SERIAL_PORT_NAME
-				, SlaveArmsConfig.DEFAULT_SERIAL_BAUD_RATE
-				, SlaveArmsConfig.DEFAULT_SERIAL_DATA_BITS
-				, SlaveArmsConfig.DEFAULT_SERIAL_STOP_BITS
-				, SlaveArmsConfig.DEFAULT_SERIAL_PARITY_TYPE
-				, SlaveArmsConfig.DEFAULT_SERIAL_EVENT_MASK);
-		
+//		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms(
+//				  SlaveArmsConfig.DEFAULT_SERIAL_PORT_NAME
+//				, SlaveArmsConfig.DEFAULT_SERIAL_BAUD_RATE
+//				, SlaveArmsConfig.DEFAULT_SERIAL_DATA_BITS
+//				, SlaveArmsConfig.DEFAULT_SERIAL_STOP_BITS
+//				, SlaveArmsConfig.DEFAULT_SERIAL_PARITY_TYPE
+//				, SlaveArmsConfig.DEFAULT_SERIAL_EVENT_MASK);
+		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms();
 // 1. INITIATE Slave Component DEVICE
-		if( telebotSlaveArms.initiate()){
-			LOGI(TAG, "Hand Initiation Complete");
-		}
-		else {
-			LOGI(TAG, "Hand Initiation Failed");
-		}
+//		if( telebotSlaveArms.initiate()){
+//			LOGI(TAG, "Hand Initiation Complete");
+//		}
+//		else {
+//			LOGI(TAG, "Hand Initiation Failed");
+//		}
 		
 // 2. CALIBRATE
 		if( telebotSlaveArms.calibrate() ){
-			LOGI(TAG, "Hand Calibration Complete");
+			LOGI(TAG, "Arms Calibration Complete");
 		}
 		else {
-			LOGI(TAG, "Hand Calibration Failed");
+			LOGI(TAG, "Arms Calibration Failed");
 		}
 		
 // 3. INITIATE Transmission PROTOCOL

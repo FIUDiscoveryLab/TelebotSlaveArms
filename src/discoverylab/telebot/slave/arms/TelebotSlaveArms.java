@@ -12,6 +12,9 @@ import discoverylab.telebot.slave.core.CoreSlaveComponent;
  */
 public class TelebotSlaveArms extends CoreSlaveComponent{
 
+	public TelebotSlaveArms(){
+		
+	}
 	public TelebotSlaveArms(SerialPort serialPort){
 		super(serialPort);
 	}
