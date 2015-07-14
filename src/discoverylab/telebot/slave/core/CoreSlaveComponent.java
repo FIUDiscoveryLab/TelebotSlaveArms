@@ -17,9 +17,16 @@ import jssc.SerialPortException;
 import static discoverylab.util.logging.LogUtils.*;
 
 /**
- * 
+ * Core Slave Component
  * @author Irvin Steve Cardenas
- *
+ * 
+ * CoreSlaveComponent is the base class for any slave component. 
+ * This can be a slave component that connects directly to a serial device such as the case of the Arms Slave Component.
+ * Or this can be a "Driver" Slave Component, one that solely receives instructions (commands) from the Master side and executes these instructions
+ * 		by making use of other Slave Component, through a Topic Publication. For example, the TelebotMasterVoiceControlTCP.
+ * 
+ * Overall the CoreSlaveComponent provides a layer of abstraction for DDS communication and Serial Communication. Allowing the Component developer
+ * 		to simply extend the CoreSlaveComponent and pass the appropriate Serial configurations, if necessary, and the proper DDS Classes.
  */
 public abstract class CoreSlaveComponent {
 
