@@ -30,7 +30,6 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 		TMasterToArmsSeq dataSeq = new TMasterToArmsSeq();
 		// STEP 3: Create Sample Info Sequence
 		SampleInfoSeq infoSeq = new SampleInfoSeq();
-		System.out.println("DATA AVAILABLE");
 		try {
 			tMasterToArmsDataReader.read(
 					dataSeq, 
@@ -45,21 +44,21 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 				
 				if(info.valid_data) {					
 					TMasterToArms command = (TMasterToArms)dataSeq.get(i);
-					String commandStr = command.servoId + " " + 
+					String commandStr = "<" +  command.servoId + " " + 
 							command.servoPositon + " " + 
-							command.servoSpeed + "\r";
+							command.servoSpeed + ">\r";
 					
 					System.out.println(commandStr);
-					//getSerialPort().writeString(commandStr);
+					getSerialPort().writeString(commandStr);
 				}
 			}
 		} catch (RETCODE_NO_DATA noData) {
             // No data to process
         } 
-//		catch (SerialPortException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
+		catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		finally {
 			tMasterToArmsDataReader.return_loan(dataSeq, infoSeq);
         }
