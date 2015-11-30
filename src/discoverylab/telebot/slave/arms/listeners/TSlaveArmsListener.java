@@ -14,6 +14,7 @@ import com.rti.dds.subscription.SampleInfoSeq;
 import com.rti.dds.subscription.SampleStateKind;
 import com.rti.dds.subscription.ViewStateKind;
 
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsController;
 import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 
 /**
@@ -23,6 +24,19 @@ import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
  */
 public class TSlaveArmsListener extends CoreDataReaderAdapter{
 	
+	private DataListenerInterface eventListener;
+	private TelebotSlaveArmsController controller;
+	
+	public TSlaveArmsListener(TelebotSlaveArmsController controller)
+	{
+		this.controller = controller;
+	}
+	
+	public DataListenerInterface getCallbackInterface()
+	{
+		return eventListener;
+	}
+
 	public void on_data_available(DataReader reader) {
 		// STEP 1: Create Data Reader
 		TMasterToArmsDataReader tMasterToArmsDataReader = (TMasterToArmsDataReader) reader;
@@ -48,20 +62,30 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 							command.servoPositon + " " + 
 							command.servoSpeed + ">\r";
 					
+					int[] data = new int[2];
+					data[0] = command.servoId;
+					data[1] = command.servoPositon;
+					
+//					getCallbackInterface().callback(data);
+					controller.callback(data);
 					System.out.println(commandStr);
-					getSerialPort().writeString(commandStr);
+//					getSerialPort().writeString(commandStr);
 				}
 			}
 		} catch (RETCODE_NO_DATA noData) {
             // No data to process
         } 
-		catch (SerialPortException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+//		catch (SerialPortException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} 
 		finally {
 			tMasterToArmsDataReader.return_loan(dataSeq, infoSeq);
         }
 	}
 	
+	public interface DataListenerInterface
+	{
+		public void callback(int[] data);
+	}
 }

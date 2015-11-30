@@ -6,6 +6,8 @@ import TelebotDDSCore.Source.Java.Generated.master.arms.TOPIC_MASTER_TO_SLAVE_AR
 import TelebotDDSCore.Source.Java.Generated.master.hands.TOPIC_MASTER_TO_SLAVE_HANDS;
 import discoverylab.telebot.slave.arms.TelebotSlaveArms;
 import discoverylab.telebot.slave.arms.configurations.SlaveArmsConfig;
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsController;
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsView;
 import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
 
 /**
@@ -14,7 +16,7 @@ import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
  * @twitter	kPatch
  *
  */
-public class TelebotSlaveArmsTest {
+public class TelebotSlaveArmsTest{
 	
 	public static String TAG = makeLogTag(TelebotSlaveArmsTest.class);
 	
@@ -32,12 +34,12 @@ public class TelebotSlaveArmsTest {
 //		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms();
 
 // 1. INITIATE Slave Component DEVICE
-		if( telebotSlaveArms.initiate()){
-			LOGI(TAG, "Hand Initiation Complete");
-		}
-		else {
-			LOGI(TAG, "Hand Initiation Failed");
-		}
+//		if( telebotSlaveArms.initiate()){
+//			LOGI(TAG, "Hand Initiation Complete");
+//		}
+//		else {
+//			LOGI(TAG, "Hand Initiation Failed");
+//		}
 		
 // 2. CALIBRATE
 		if( telebotSlaveArms.calibrate() ){
@@ -48,7 +50,13 @@ public class TelebotSlaveArmsTest {
 		}
 		
 // 3. INITIATE Transmission PROTOCOL
-		TSlaveArmsListener listener = new TSlaveArmsListener();
+		
+		TelebotSlaveArmsView view = new TelebotSlaveArmsView();
+		TelebotSlaveArmsController controller = new TelebotSlaveArmsController(view);
+		
+		view.setVisible(true);
+		
+		TSlaveArmsListener listener = new TSlaveArmsListener(controller);
 		
 		if( telebotSlaveArms.initiateTransmissionProtocol(
 				TOPIC_MASTER_TO_SLAVE_ARMS.VALUE
@@ -59,8 +67,6 @@ public class TelebotSlaveArmsTest {
 		else {
 			LOGI(TAG, "Protocol Sequence Failed");
 		}
-		
-// 4. INITIATE Transmission SEQUENCE		
 		
 	}
 }
