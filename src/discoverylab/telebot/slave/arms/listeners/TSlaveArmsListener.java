@@ -14,6 +14,7 @@ import com.rti.dds.subscription.SampleInfoSeq;
 import com.rti.dds.subscription.SampleStateKind;
 import com.rti.dds.subscription.ViewStateKind;
 
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsController;
 import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 
 /**
@@ -23,6 +24,19 @@ import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
  */
 public class TSlaveArmsListener extends CoreDataReaderAdapter{
 	
+	private DataListenerInterface eventListener;
+	private TelebotSlaveArmsController controller;
+	
+	public TSlaveArmsListener(TelebotSlaveArmsController controller)
+	{
+		this.controller = controller;
+	}
+	
+	public DataListenerInterface getCallbackInterface()
+	{
+		return eventListener;
+	}
+
 	public void on_data_available(DataReader reader) {
 		// STEP 1: Create Data Reader
 		TMasterToArmsDataReader tMasterToArmsDataReader = (TMasterToArmsDataReader) reader;
@@ -30,7 +44,6 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 		TMasterToArmsSeq dataSeq = new TMasterToArmsSeq();
 		// STEP 3: Create Sample Info Sequence
 		SampleInfoSeq infoSeq = new SampleInfoSeq();
-		System.out.println("DATA AVAILABLE");
 		try {
 			tMasterToArmsDataReader.read(
 					dataSeq, 
@@ -45,12 +58,18 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 				
 				if(info.valid_data) {					
 					TMasterToArms command = (TMasterToArms)dataSeq.get(i);
-					String commandStr = command.servoId + " " + 
+					String commandStr = "<" +  command.servoId + " " + 
 							command.servoPositon + " " + 
-							command.servoSpeed + "\r";
+							command.servoSpeed + ">\r";
 					
+					int[] data = new int[2];
+					data[0] = command.servoId;
+					data[1] = command.servoPositon;
+					
+//					getCallbackInterface().callback(data);
+					controller.callback(data);
 					System.out.println(commandStr);
-					//getSerialPort().writeString(commandStr);
+//					getSerialPort().writeString(commandStr);
 				}
 			}
 		} catch (RETCODE_NO_DATA noData) {
@@ -65,4 +84,8 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
         }
 	}
 	
+	public interface DataListenerInterface
+	{
+		public void callback(int[] data);
+	}
 }

@@ -6,6 +6,8 @@ import TelebotDDSCore.Source.Java.Generated.master.arms.TOPIC_MASTER_TO_SLAVE_AR
 import TelebotDDSCore.Source.Java.Generated.master.hands.TOPIC_MASTER_TO_SLAVE_HANDS;
 import discoverylab.telebot.slave.arms.TelebotSlaveArms;
 import discoverylab.telebot.slave.arms.configurations.SlaveArmsConfig;
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsController;
+import discoverylab.telebot.slave.arms.gui.TelebotSlaveArmsView;
 import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
 
 /**
@@ -14,20 +16,23 @@ import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
  * @twitter	kPatch
  *
  */
-public class TelebotSlaveArmsTest {
+public class TelebotSlaveArmsTest{
 	
 	public static String TAG = makeLogTag(TelebotSlaveArmsTest.class);
 	
 	public static void main(String [] args){
 		
-//		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms(
-//				  SlaveArmsConfig.DEFAULT_SERIAL_PORT_NAME
-//				, SlaveArmsConfig.DEFAULT_SERIAL_BAUD_RATE
-//				, SlaveArmsConfig.DEFAULT_SERIAL_DATA_BITS
-//				, SlaveArmsConfig.DEFAULT_SERIAL_STOP_BITS
-//				, SlaveArmsConfig.DEFAULT_SERIAL_PARITY_TYPE
-//				, SlaveArmsConfig.DEFAULT_SERIAL_EVENT_MASK);
-		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms();
+		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms(
+				  SlaveArmsConfig.DEFAULT_SERIAL_PORT_NAME
+				, SlaveArmsConfig.DEFAULT_SERIAL_BAUD_RATE
+				, SlaveArmsConfig.DEFAULT_SERIAL_DATA_BITS
+				, SlaveArmsConfig.DEFAULT_SERIAL_STOP_BITS
+				, SlaveArmsConfig.DEFAULT_SERIAL_PARITY_TYPE
+				, SlaveArmsConfig.DEFAULT_SERIAL_EVENT_MASK);
+		
+//		Testing Component without Serial connection
+//		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms();
+
 // 1. INITIATE Slave Component DEVICE
 //		if( telebotSlaveArms.initiate()){
 //			LOGI(TAG, "Hand Initiation Complete");
@@ -45,7 +50,13 @@ public class TelebotSlaveArmsTest {
 		}
 		
 // 3. INITIATE Transmission PROTOCOL
-		TSlaveArmsListener listener = new TSlaveArmsListener();
+		
+		TelebotSlaveArmsView view = new TelebotSlaveArmsView();
+		TelebotSlaveArmsController controller = new TelebotSlaveArmsController(view);
+		
+		view.setVisible(true);
+		
+		TSlaveArmsListener listener = new TSlaveArmsListener(controller);
 		
 		if( telebotSlaveArms.initiateTransmissionProtocol(
 				TOPIC_MASTER_TO_SLAVE_ARMS.VALUE
@@ -56,8 +67,6 @@ public class TelebotSlaveArmsTest {
 		else {
 			LOGI(TAG, "Protocol Sequence Failed");
 		}
-		
-// 4. INITIATE Transmission SEQUENCE		
 		
 	}
 }
