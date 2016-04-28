@@ -34,20 +34,20 @@ public class TelebotSlaveArmsTest{
 //		TelebotSlaveArms telebotSlaveArms = new TelebotSlaveArms();
 
 // 1. INITIATE Slave Component DEVICE
-//		if( telebotSlaveArms.initiate()){
-//			LOGI(TAG, "Hand Initiation Complete");
-//		}
-//		else {
-//			LOGI(TAG, "Hand Initiation Failed");
-//		}
-		
-// 2. CALIBRATE
-		if( telebotSlaveArms.calibrate() ){
-			LOGI(TAG, "Arms Calibration Complete");
+		if( telebotSlaveArms.initiate()){
+			LOGI(TAG, "Serial Initiation Complete");
 		}
 		else {
-			LOGI(TAG, "Arms Calibration Failed");
+			LOGI(TAG, "Serial Initiation Failed");
 		}
+		
+// 2. CALIBRATE
+//		if( telebotSlaveArms.calibrate() ){
+//			LOGI(TAG, "Arms Calibration Complete");
+//		}
+//		else {
+//			LOGI(TAG, "Arms Calibration Failed");
+//		}
 		
 // 3. INITIATE Transmission PROTOCOL
 		

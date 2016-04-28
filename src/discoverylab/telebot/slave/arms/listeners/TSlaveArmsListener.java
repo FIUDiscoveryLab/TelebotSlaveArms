@@ -60,7 +60,7 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 					TMasterToArms command = (TMasterToArms)dataSeq.get(i);
 					String commandStr = "<" +  command.servoId + " " + 
 							command.servoPositon + " " + 
-							command.servoSpeed + ">\r";
+							command.servoSpeed + ">";
 					
 					int[] data = new int[2];
 					data[0] = command.servoId;
@@ -69,7 +69,12 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 //					getCallbackInterface().callback(data);
 					controller.callback(data);
 					System.out.println(commandStr);
-//					getSerialPort().writeString(commandStr);
+					try {
+						getSerialPort().writeString(commandStr);
+					} catch (SerialPortException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		} catch (RETCODE_NO_DATA noData) {
