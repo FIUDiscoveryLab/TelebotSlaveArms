@@ -51,12 +51,12 @@ public class TelebotSlaveArmsTest{
 		
 // 3. INITIATE Transmission PROTOCOL
 		
-		TelebotSlaveArmsView view = new TelebotSlaveArmsView();
-		TelebotSlaveArmsController controller = new TelebotSlaveArmsController(view);
+		//TelebotSlaveArmsView view = new TelebotSlaveArmsView();
+		//TelebotSlaveArmsController controller = new TelebotSlaveArmsController(view);
 		
-		view.setVisible(true);
+		//view.setVisible(true);
 		
-		TSlaveArmsListener listener = new TSlaveArmsListener(controller);
+		TSlaveArmsListener listener = new TSlaveArmsListener();//controller);
 		
 		if( telebotSlaveArms.initiateTransmissionProtocol(
 				TOPIC_MASTER_TO_SLAVE_ARMS.VALUE

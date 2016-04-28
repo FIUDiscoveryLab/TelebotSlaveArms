@@ -32,6 +32,10 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 		this.controller = controller;
 	}
 	
+	public TSlaveArmsListener() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public DataListenerInterface getCallbackInterface()
 	{
 		return eventListener;
@@ -67,7 +71,7 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 					data[1] = command.servoPositon;
 					
 //					getCallbackInterface().callback(data);
-					controller.callback(data);
+//					controller.callback(data);
 					System.out.println(commandStr);
 					try {
 						getSerialPort().writeString(commandStr);
