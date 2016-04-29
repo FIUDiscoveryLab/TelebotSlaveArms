@@ -20,11 +20,11 @@ import discoverylab.telebot.slave.core.readers.CoreDataReaderAdapter;
 /**
  * 
  * @author Irvin Steve Cardenas
- *
+ * modified by Shadeh Ferris-Francis
  */
 public class TSlaveArmsListener extends CoreDataReaderAdapter{
 	
-	private DataListenerInterface eventListener;
+	private DataListener dataListener;
 	private TelebotSlaveArmsController controller;
 	
 	public TSlaveArmsListener(TelebotSlaveArmsController controller)
@@ -32,9 +32,8 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 		this.controller = controller;
 	}
 	
-	public DataListenerInterface getCallbackInterface()
-	{
-		return eventListener;
+	public DataListener getCallbackInterface() {
+		return dataListener;
 	}
 
 	public void on_data_available(DataReader reader) {
@@ -62,12 +61,12 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
 							command.servoPositon + " " + 
 							command.servoSpeed + ">\r";
 					
-					int[] data = new int[2];
-					data[0] = command.servoId;
-					data[1] = command.servoPositon;
+					String[] data = new String[2];
+					data[0] = command.servoId + "";
+					data[1] = command.servoPositon + "";
 					
-//					getCallbackInterface().callback(data);
-					controller.callback(data);
+					getCallbackInterface().callback(data);
+//					controller.callback(data);
 					System.out.println(commandStr);
 //					getSerialPort().writeString(commandStr);
 				}
@@ -84,8 +83,7 @@ public class TSlaveArmsListener extends CoreDataReaderAdapter{
         }
 	}
 	
-	public interface DataListenerInterface
-	{
-		public void callback(int[] data);
+	public interface DataListener{
+		public void callback(String[] data);
 	}
 }

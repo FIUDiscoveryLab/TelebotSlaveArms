@@ -14,7 +14,7 @@ import discoverylab.telebot.slave.arms.listeners.TSlaveArmsListener;
  * 
  * @author 	Irvin Steve Cardenas
  * @twitter	kPatch
- *
+ * modified by Shadeh Ferris-Francis
  */
 public class TelebotSlaveArmsTest{
 	
